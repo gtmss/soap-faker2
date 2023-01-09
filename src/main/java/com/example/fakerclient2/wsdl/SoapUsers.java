@@ -8,6 +8,10 @@
 
 package com.example.fakerclient2.wsdl;
 
+import com.sun.istack.NotNull;
+import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -51,6 +55,7 @@ import javax.xml.bind.annotation.XmlType;
     "address",
     "company"
 })
+
 public class SoapUsers {
 
     protected long id;
