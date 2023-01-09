@@ -9,13 +9,10 @@ import java.util.List;
 
 public class ResponseToUsersConverter implements Converter<GetUsersResponse, List<Users>> {
 
-
-    public ResponseToUsersConverter() {
-    }
-
     @Override
     public List<Users> convert(GetUsersResponse source) {
         List<Users> usersList = new ArrayList<>();
+        source.hashCode();
         
         return null;
     }

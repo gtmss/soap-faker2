@@ -14,6 +14,7 @@ public class UsersConfiguration {
         return marshaller;
     }
 
+
     @Bean
     public UsersClient usersClient(Jaxb2Marshaller marshaller) {
         UsersClient client = new UsersClient();

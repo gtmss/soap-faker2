@@ -1,13 +1,14 @@
 package com.example.fakerclient2.client;
 
-import com.example.fakerclient2.wsdl.GetUserByIdRequest;
-import com.example.fakerclient2.wsdl.GetUserByIdResponse;
-import com.example.fakerclient2.wsdl.GetUsersRequest;
-import com.example.fakerclient2.wsdl.GetUsersResponse;
+import com.example.fakerclient2.model.Users;
+import com.example.fakerclient2.wsdl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsersClient extends WebServiceGatewaySupport {
 
@@ -33,6 +34,14 @@ public class UsersClient extends WebServiceGatewaySupport {
                         , request, new SoapActionCallback("http://spring.io/guides/gs-producing-web-service/GetUsersByIdRequest"));
 
         return response;
+
+    }
+
+    public List<SoapUsers> converted (){
+        List<SoapUsers> usersList = new ArrayList<>();
+        GetUsersResponse response = new GetUsersResponse();
+        usersList = response.getUsers();
+        return usersList;
     }
 
 }
