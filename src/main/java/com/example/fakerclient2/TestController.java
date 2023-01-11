@@ -24,7 +24,7 @@ public class TestController {
     @GetMapping
     public ResponseEntity getAllUsers(){
         ResponseToUsersDatabase responseToUsersDatabase = new ResponseToUsersDatabase(usersRepository);
-        responseToUsersDatabase.toDatabase(usersClient.getUsers());
+        //responseToUsersDatabase.toDatabase(usersClient.getUsers());
         return ResponseEntity.ok().body(usersClient.getUsers());
 
     }
