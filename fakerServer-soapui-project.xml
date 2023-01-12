@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="922711dc-461e-4101-a74b-8a3fc0393e27" activeEnvironment="Default" name="fakerServer" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="da4e0177-3a85-4c51-81aa-c03be3db1e80" wsaVersion="NONE" name="UsersPortSoap11" type="wsdl" bindingName="{http://spring.io/guides/gs-producing-web-service}UsersPortSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/ws/users.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/ws/users.wsdl"><con:part><con:url>http://localhost:8080/ws/users.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://spring.io/guides/gs-producing-web-service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://spring.io/guides/gs-producing-web-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://spring.io/guides/gs-producing-web-service">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://spring.io/guides/gs-producing-web-service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getUsersRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="req" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUsersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="users" type="tns:soapUsers"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUserByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUserByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="users" type="tns:soapUsers"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="soapUsers">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="username" type="xs:string"/>
+          <xs:element name="email" type="xs:string"/>
+          <xs:element name="phone" type="xs:string"/>
+          <xs:element name="website" type="xs:string"/>
+          <xs:element name="address" type="tns:address"/>
+          <xs:element name="company" type="tns:company"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="address">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long"/>
+          <xs:element name="street" type="xs:string"/>
+          <xs:element name="suite" type="xs:string"/>
+          <xs:element name="city" type="xs:string"/>
+          <xs:element name="zipcode" type="xs:string"/>
+          <xs:element name="geo" type="tns:geo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="company">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="catchPhrase" type="xs:string"/>
+          <xs:element name="bs" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="geo">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long"/>
+          <xs:element name="lat" type="xs:double"/>
+          <xs:element name="lng" type="xs:double"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getUsersResponse">
+    <wsdl:part element="tns:getUsersResponse" name="getUsersResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersRequest">
+    <wsdl:part element="tns:getUsersRequest" name="getUsersRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByIdRequest">
+    <wsdl:part element="tns:getUserByIdRequest" name="getUserByIdRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByIdResponse">
+    <wsdl:part element="tns:getUserByIdResponse" name="getUserByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UsersPort">
+    <wsdl:operation name="getUsers">
+      <wsdl:input message="tns:getUsersRequest" name="getUsersRequest"></wsdl:input>
+      <wsdl:output message="tns:getUsersResponse" name="getUsersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserById">
+      <wsdl:input message="tns:getUserByIdRequest" name="getUserByIdRequest"></wsdl:input>
+      <wsdl:output message="tns:getUserByIdResponse" name="getUserByIdResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UsersPortSoap11" type="tns:UsersPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUsers">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getUsersRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserById">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getUserByIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UsersPortService">
+    <wsdl:port binding="tns:UsersPortSoap11" name="UsersPortSoap11">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/ws</con:endpoint></con:endpoints><con:operation id="6dfda29f-f532-4982-abd9-814357d798b2" isOneWay="false" action="" name="getUserById" bindingOperationName="getUserById" type="Request-Response" outputName="getUserByIdResponse" inputName="getUserByIdRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e0ff95b4-7547-4e5f-9e21-c0c6195967c8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gs="http://spring.io/guides/gs-producing-web-service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gs:getUserByIdRequest>
+         <gs:id>?</gs:id>
+      </gs:getUserByIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://spring.io/guides/gs-producing-web-service/UsersPort/getUserByIdRequest"/></con:call></con:operation><con:operation id="9f113e7e-0c47-41fb-934a-58063b628323" isOneWay="false" action="" name="getUsers" bindingOperationName="getUsers" type="Request-Response" outputName="getUsersResponse" inputName="getUsersRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a255e72e-36ed-4828-a77e-b1c101484e17" name="Request 1" outgoingWss="pass" incomingWss=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gs="http://spring.io/guides/gs-producing-web-service">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gs:getUsersRequest>
+         <gs:req>?</gs:req>
+      </gs:getUsersRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username/><con:password/><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://spring.io/guides/gs-producing-web-service/UsersPort/getUsersRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer><con:crypto><con:source>/home/gtm/Desktop/soap-faker2/src/main/resources/keystore/client.jks</con:source><con:password>gatman</con:password><con:type>KEYSTORE</con:type></con:crypto><con:outgoing mustUnderstand="false"><con:name>faker</con:name><con:username/><con:password/><con:entry type="Signature" username="client" password="gatman"><con:configuration><crypto>client.jks</crypto><keyIdentifierType>2</keyIdentifierType><signatureAlgorithm>http://www.w3.org/2000/09/xmldsig#rsa-sha1</signatureAlgorithm><signatureCanonicalization>http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments</signatureCanonicalization><useSingleCert>false</useSingleCert><prependSignature>true</prependSignature><digestAlgorithm>http://www.w3.org/2000/09/xmldsig#sha1</digestAlgorithm><customTokenValueType/><customTokenId/></con:configuration></con:entry><con:entry type="Timestamp"><con:configuration><timeToLive>30</timeToLive><strictTimestamp>true</strictTimestamp></con:configuration></con:entry></con:outgoing><con:outgoing actor="" mustUnderstand="false"><con:name>pass</con:name><con:password/><con:entry type="Username" username="admin" password="secret1"><con:configuration><addCreated>true</addCreated><addNonce>true</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry><con:entry type="Timestamp"><con:configuration><timeToLive>30</timeToLive><strictTimestamp>true</strictTimestamp></con:configuration></con:entry></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
