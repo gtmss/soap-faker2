@@ -29,7 +29,6 @@ public class ResponseToUsersDatabase{
         List<SoapUsers> usersList = response.getUsers();
         List<Users> usersModel = new ArrayList<>();
         usersList.forEach(users -> usersModel.add(mapper.soapUsersToUsers(users)));
-        System.out.println(usersModel);
         usersRepository.saveAll(usersModel);
         //usersModel.forEach(users -> usersRepository.save(users));
 
