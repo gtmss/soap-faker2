@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.ws.client.support.interceptor.ClientInterceptor;
 import org.springframework.ws.soap.security.wss4j2.Wss4jSecurityInterceptor;
 import org.springframework.ws.soap.security.wss4j2.support.CryptoFactoryBean;
 
@@ -61,11 +62,14 @@ public class UsersConfiguration {
 
 
     @Bean
-    public UsersClient usersClient(Jaxb2Marshaller marshaller) {
+    public UsersClient usersClient(Jaxb2Marshaller marshaller) throws Exception {
         UsersClient client = new UsersClient();
         client.setDefaultUri("http://localhost:8080/ws");
         client.setMarshaller(marshaller);
         client.setUnmarshaller(marshaller);
+        ClientInterceptor[] interceptors = new ClientInterceptor[]{securityInterceptor()};
+        client.setInterceptors(interceptors);
+
         return client;
     }
 }
