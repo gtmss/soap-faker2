@@ -2,8 +2,8 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/soap
 
-    username: gatman
-    password: gatman
+    username: postgres
+    password: postgres
 
   liquibase:
     change-log: db/changelog/db.changelog-master.yaml
